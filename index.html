@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="hi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <!-- APP INFO -->
+    <title>Smart Shiksha | Master Learning App</title>
+    <meta
+      name="description"
+      content="A complete learning solution for Class 1 to 8 covering Math, Science, Hindi, English and GK."
+    />
+    <meta name="theme-color" content="#4F46E5" />
+    <!-- Mobile Browser Color -->
+
+    <!-- =========================================
+       PREMIUM FONTS (Google Fonts)
+       1. Inter: For Clean English Text
+       2. Mukta: Best for Hindi Body Text
+       3. Teko: For Bold/Stylish Headings
+       ========================================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Mukta:wght@300;400;500;600;700;800&family=Teko:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- =========================================
+       ICONS LIBRARY (FontAwesome 6)
+       ========================================= -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
+
+    <!-- =========================================
+       PHASE 3 CONNECTION (Styles)
+       ========================================= -->
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* Temporary Loading State before CSS loads */
+      body {
+        margin: 0;
+        background-color: #f8fafc;
+        font-family: sans-serif;
+      }
+      #app-root:empty::before {
+        content: "Loading App...";
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        color: #64748b;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+      =========================================
+      THE APP CONTAINER
+      This is where 'app.js' will inject:
+      1. Landing Page (Class Selection)
+      2. Dashboard (Subject Selection)
+      3. Content Area (Study Material)
+      ========================================= 
+    -->
+    <div id="app-root"></div>
+
+    <!-- SYLLABUS MODAL (Already Existing) -->
+    <div id="syllabusModal" class="modal-backdrop">
+      <!-- ... old code ... -->
+    </div>
+
+    <!-- NEW: CONFIRMATION MODAL -->
+    <div id="confirmModal" class="modal-backdrop" style="z-index: 2100">
+      <div class="modal-content small-modal">
+        <div class="modal-header">
+          <h3>Update Status?</h3>
+          <button onclick="App.closeConfirmModal()" class="modal-close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p
+            id="confirmText"
+            style="font-size: 1.1rem; color: #444; margin: 10px 0"
+          >
+            Are you sure?
+          </p>
+        </div>
+        <div
+          class="modal-footer"
+          style="
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+          "
+        >
+          <button
+            onclick="App.closeConfirmModal()"
+            style="
+              padding: 8px 15px;
+              border: 1px solid #ddd;
+              background: white;
+              border-radius: 6px;
+              cursor: pointer;
+            "
+          >
+            Cancel
+          </button>
+          <button
+            onclick="App.executeToggle()"
+            style="
+              padding: 8px 20px;
+              border: none;
+              background: #4f46e5;
+              color: white;
+              border-radius: 6px;
+              cursor: pointer;
+              font-weight: 600;
+            "
+          >
+            Yes, Update
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="data/group1.js"></script>
+    <script src="data/group2.js"></script>
+    <script src="data/group3.js"></script>
+
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("./sw.js")
+            .then((reg) => console.log("Service Worker Registered! ✅"))
+            .catch((err) => console.log("SW Registration Failed ❌", err));
+        });
+      }
+    </script>
+  </body>
+</html>
