@@ -191,7 +191,7 @@ const App = {
                     <div class="brand-logo"><i class="fas ${subject.icon}"></i> &nbsp; ${subject.name}</div>
                 </div>
                 <button class="home-btn" onclick="App.renderDashboard(masterData['${this.state.activeGroup}'])">
-                    <i class="fas fa-th-large"></i>
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 </button>
             </header>
 
@@ -631,5 +631,6 @@ const App = {
         }
     }
 };
+
 
 document.addEventListener("DOMContentLoaded", () => App.init());
