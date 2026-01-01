@@ -11,7 +11,7 @@ const DataService = {
     init: function () {
         // 1. Teacher Login (सिर्फ एक बार नाम पूछेगा)
         if (!localStorage.getItem("teacherName")) {
-            const name = prompt("नमस्ते! अपनी हाज़िरी लगाने के लिए अपना नाम लिखें (e.g., Aman Sir):");
+            const name = prompt("नमस्ते! कृपया अपनी पहचान सत्यापित करने हेतु अपना पूरा नाम दर्ज करें:");
             if (name) localStorage.setItem("teacherName", name);
             else localStorage.setItem("teacherName", "Guest Teacher");
         }
@@ -93,4 +93,5 @@ const DataService = {
 };
 
 // Start Service
+
 DataService.init();
