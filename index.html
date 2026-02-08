@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="hi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>SGS Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Mukta:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="manifest.json">
+  </head>
+  <body>
+    <div id="app-root"></div>
+
+    <!-- MODALS (Hidden by default via CSS class 'modal-backdrop') -->
+    
+    <!-- 1. EDIT CONTENT MODAL -->
+    <div id="adminEditModal" class="modal-backdrop">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Edit Content</h3>
+          <button onclick="App.closeEditModal()" class="modal-close-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="editUnitId" />
+          
+          <div class="form-group">
+            <label>Day Tag</label>
+            <input type="text" id="editDayTagInput" class="form-input" placeholder="e.g. Day 1">
+          </div>
+          <div class="form-group">
+            <label>Topic</label>
+            <input type="text" id="editTopicInput" class="form-input" placeholder="Topic Name">
+          </div>
+          <div class="form-group">
+            <label>Board Work</label>
+            <textarea id="editBoardInput" rows="3" class="form-input"></textarea>
+          </div>
+
+          <label class="section-label">Class Wise Content</label>
+          <div class="class-grid-inputs">
+             <!-- Generating 12 Inputs -->
+             <input type="text" id="c1" placeholder="C1"><input type="text" id="c2" placeholder="C2">
+             <input type="text" id="c3" placeholder="C3"><input type="text" id="c4" placeholder="C4">
+             <input type="text" id="c5" placeholder="C5"><input type="text" id="c6" placeholder="C6">
+             <input type="text" id="c7" placeholder="C7"><input type="text" id="c8" placeholder="C8">
+             <input type="text" id="c9" placeholder="C9"><input type="text" id="c10" placeholder="C10">
+             <input type="text" id="c11" placeholder="C11"><input type="text" id="c12" placeholder="C12">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="saveChangesBtn" onclick="App.saveContentChanges()" class="primary-btn">Save Content</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. UNIT MODAL -->
+    <div id="unitModal" class="modal-backdrop">
+      <div class="modal-content" style="max-width: 400px">
+        <div class="modal-header">
+          <h3>Manage Unit</h3>
+          <button onclick="document.getElementById('unitModal').classList.remove('show')" class="modal-close-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="unitMode" /><input type="hidden" id="targetUnitId" />
+          
+          <div class="form-group">
+            <label>Unit ID</label>
+            <input type="text" id="uIdInput" class="form-input" placeholder="u1">
+          </div>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" id="uTitleInput" class="form-input">
+          </div>
+          <div class="form-group">
+            <label>Duration</label>
+            <input type="text" id="uDurInput" class="form-input">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button onclick="App.saveUnitChanges()" class="primary-btn">Save Unit</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js");
+        });
+      }
+    </script>
+  </body>
+</html>
